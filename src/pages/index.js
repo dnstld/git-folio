@@ -1,14 +1,12 @@
 import * as React from "react"
 
-const pageStyles = {
-  fontFamily: "-apple-system, Roboto, sans-serif, serif",
-}
+import Layout from './../components/Layout'
 
 const IndexPage = () => {
   return (
-    <main style={pageStyles}>
+    <Layout>
       <h1>Starting GitFolio</h1>
-    </main>
+    </Layout>
   )
 }
 
