@@ -210,6 +210,8 @@ module.exports = {
       '7xl': ['4.5rem', { lineHeight: '1' }],
       '8xl': ['6rem', { lineHeight: '1' }],
       '9xl': ['8rem', { lineHeight: '1' }],
+
+      initial: 'initial',
     },
     fontWeight: {
       thin: '100',
@@ -440,6 +442,8 @@ module.exports = {
       8: '2rem',
       9: '2.25rem',
       10: '2.5rem',
+
+      initial: 'initial'
     },
     listStyleType: {
       none: 'none',

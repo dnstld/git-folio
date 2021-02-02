@@ -1,10 +1,11 @@
 import * as React from 'react'
 
 import Layout from '../components/Layout'
+import User from '../components/User'
 
 const IndexPage = () => (
   <Layout>
-    <h1>Starting GitFolio</h1>
+    <User />
   </Layout>
 )
 
