@@ -5,6 +5,8 @@ import {
   faGithub
 } from '@fortawesome/free-brands-svg-icons'
 
+import FindUser from './../FindUser'
+
 import {
   App,
   Header,
@@ -29,7 +31,7 @@ const Layout = ({ children }) => (
         </a>
       </LogoSection>
       <FindSection>
-        Find User
+        <FindUser />
       </FindSection>
     </Header>
 

@@ -136,13 +136,11 @@ const User = () => {
                   <GithubUserLinkText>
                     <FontAwesomeIcon icon={faGithub} pull="left" />
                     Created&nbsp;<Moment fromNow>{user.created_at}</Moment>
-                    {/* Created: {moment-calendar (user.created_at)} */}
                   </GithubUserLinkText>
                 </GithubUserLink>
                 <GithubUserLinkText>
                   <FontAwesomeIcon icon={faUserEdit} pull="left" />
                   Updated&nbsp;<Moment fromNow>{user.updated_at}</Moment>
-                  {/* Last update: {moment-to (user.updated_at)} */}
                 </GithubUserLinkText>
               </InfoFooter>
             </InfoContainer>
