@@ -4,6 +4,8 @@ import {
   faSearch
 } from '@fortawesome/free-solid-svg-icons'
 
+import withUser from '../WithUser'
+
 import {
   Content,
   Wrapper,
@@ -16,13 +18,18 @@ import {
 class FindUser extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { value: 'dnstld' };
 
-    this.handleChange = this.handleChange.bind(this);
+    this.state = {
+      value: this.props.user
+    };
   }
 
-  handleChange(event) {
+  handleChange = (event) => {
     this.setState({ value: event.target.value });
+  }
+
+  handleUser = () => {
+    this.props.changeUser(this.state.value)
   }
 
   render() {
@@ -40,7 +47,8 @@ class FindUser extends React.Component {
               id="find-user"
               tabIndex="1"
             />
-            <Button tabIndex="2">
+            <Button type="button" tabIndex="2" onClick={this.handleUser}>
+            {/* <Button type="button" tabIndex="2"> */}
               <FontAwesomeIcon icon={faSearch} pull="left" />
               Find
             </Button>
@@ -51,4 +59,4 @@ class FindUser extends React.Component {
   }
 }
 
-export default FindUser
+export default withUser(FindUser)
