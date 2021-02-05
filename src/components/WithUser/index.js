@@ -1,23 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const withUser = (WrappedComponent) => {
-  class WithUser extends React.Component {
-    constructor(props) {
-      super(props);
+  const WithUser = () => {
+    const [user, setUser] = useState('dnstld')
 
-      this.state = {
-        user: 'dnstld'
-      }
+    const changeUser = (newUser) => {
+      setUser(newUser)
     }
 
-    changeUser = (newUser) => {
-      this.setState({ user: newUser })
-    }
-
-    render() {
-      return <WrappedComponent user={this.state.user} changeUser={this.changeUser} />
-    }
+    return (
+      <WrappedComponent user={user} changeUser={changeUser} />
+    )
   }
+
   return WithUser
 }
 

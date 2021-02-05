@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faSearch
@@ -15,48 +15,39 @@ import {
   Button
 } from './styles'
 
-class FindUser extends React.Component {
-  constructor(props) {
-    super(props);
+const FindUser = (props) => {
+  const [value, setValue] = useState(props.user)
 
-    this.state = {
-      value: this.props.user
-    };
+  const handleChange = (event) => {
+    setValue(event.target.value);
   }
 
-  handleChange = (event) => {
-    this.setState({ value: event.target.value });
+  const handleUser = () => {
+    props.changeUser(value)
   }
 
-  handleUser = () => {
-    this.props.changeUser(this.state.value)
-  }
-
-  render() {
-    return (
-      <Content>
-        <Wrapper>
-          <Label htmlFor="find-user">
-            GitHub username
-          </Label>
-          <InputContainer>
-            <Input
-              onChange={this.handleChange}
-              value={this.state.value}
-              type="text"
-              id="find-user"
-              tabIndex="1"
-            />
-            <Button type="button" tabIndex="2" onClick={this.handleUser}>
-            {/* <Button type="button" tabIndex="2"> */}
-              <FontAwesomeIcon icon={faSearch} pull="left" />
-              Find
-            </Button>
-          </InputContainer>
-        </Wrapper>
-      </Content>
-    )
-  }
+  return (
+    <Content>
+      <Wrapper>
+        <Label htmlFor="find-user">
+          GitHub username
+        </Label>
+        <InputContainer>
+          <Input
+            onChange={handleChange}
+            value={value}
+            type="text"
+            id="find-user"
+            tabIndex="1"
+          />
+          <Button type="button" tabIndex="2" onClick={handleUser}>
+            <FontAwesomeIcon icon={faSearch} pull="left" />
+            Find
+          </Button>
+        </InputContainer>
+      </Wrapper>
+    </Content>
+  )
 }
 
 export default withUser(FindUser)
