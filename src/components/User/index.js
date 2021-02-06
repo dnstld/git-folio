@@ -34,25 +34,22 @@ import {
   GithubUserLinkText
 } from './styles'
 
-import withUser from '../WithUser'
-
-const User = (props) => {
-  const [userName, setUserName] = useState(props.user)
-  const [user, setUser] = useState({})
+const User = ({ user }) => {
+  const [userData, setUserData] = useState({})
   const [isLoading, setIsLoading] = useState(true)
   const [errors, setErrors] = useState(null)
 
   useEffect(() => {
-    api.getUser(props.user)
+    api.getUser(user)
       .then(response => {
-        setUser(response.data)
+        setUserData(response.data)
         setIsLoading(false)
       })
       .catch(error => {
         setErrors(error)
         setIsLoading(false)
       })
-  }, [])
+  }, [user])
 
   return (
     <div>
@@ -62,35 +59,35 @@ const User = (props) => {
             <Follow>
               <div>
                 <p>Repos</p>
-                <FollowText>{user.public_repos}</FollowText>
+                <FollowText>{userData.public_repos}</FollowText>
               </div>
               <div>
                 <p>Gists</p>
-                <FollowText>{user.public_gists}</FollowText>
+                <FollowText>{userData.public_gists}</FollowText>
               </div>
               <div>
                 <p>Followers</p>
-                <FollowText>{user.followers}</FollowText>
+                <FollowText>{userData.followers}</FollowText>
               </div>
               <div>
                 <p>Following</p>
-                <FollowText>{user.following}</FollowText>
+                <FollowText>{userData.following}</FollowText>
               </div>
             </Follow>
 
             <Social>
-              {user.twitter_username &&
-                <SocialLink href={`https://twitter.com/${user.twitter_username}`} target="blank" title={user.twitter_username}>
+              {userData.twitter_username &&
+                <SocialLink href={`https://twitter.com/${userData.twitter_username}`} target="blank" title={userData.twitter_username}>
                   <FontAwesomeIcon icon={faTwitter} size="lg" />
                 </SocialLink>
               }
-              {user.blog &&
-                <SocialLink href={user.blog} target="blank" title={user.name}>
+              {userData.blog &&
+                <SocialLink href={userData.blog} target="blank" title={userData.name}>
                   <FontAwesomeIcon icon={faDesktop} size="lg" />
                 </SocialLink>
               }
-              {user.email &&
-                <SocialLink href={`mailto:${user.email}`} target="blank" title={user.email}>
+              {userData.email &&
+                <SocialLink href={`mailto:${userData.email}`} target="blank" title={userData.email}>
                   <FontAwesomeIcon icon={faEnvelope} size="lg" />
                 </SocialLink>
               }
@@ -98,46 +95,46 @@ const User = (props) => {
           </FollowAndSocial>
 
           <UserInfo>
-            {/* <AvatarContainer hireable={user.hireable}> */}
+            {/* <AvatarContainer hireable={userData.hireable}> */}
             <AvatarContainer>
-              <img src={user.avatar_url} alt={user.name} />
+              <img src={userData.avatar_url} alt={userData.name} />
             </AvatarContainer>
 
             <InfoContainer>
               <InfoHeader>
                 <UserName>
-                  {user.site_admin &&
+                  {userData.site_admin &&
                     <UserShield>
                       <FontAwesomeIcon icon={faUserShield} pull="left" />
                     </UserShield>
                   }
-                  {user.name}
+                  {userData.name}
                 </UserName>
 
-                {user.location &&
+                {userData.location &&
                   <UserLocation>
                     <FontAwesomeIcon icon={faMapMarkerAlt} pull="left" />
-                    {user.location}
+                    {userData.location}
                   </UserLocation>
                 }
 
-                {user.bio &&
+                {userData.bio &&
                   <UserBio>
-                    {user.bio}
+                    {userData.bio}
                   </UserBio>
                 }
               </InfoHeader>
 
               <InfoFooter>
-                <GithubUserLink href={user.html_url} target="blank" title={user.login}>
+                <GithubUserLink href={userData.html_url} target="blank" title={userData.login}>
                   <GithubUserLinkText>
                     <FontAwesomeIcon icon={faGithub} pull="left" />
-                    Created&nbsp;<Moment fromNow>{user.created_at}</Moment>
+                    Created&nbsp;<Moment fromNow>{userData.created_at}</Moment>
                   </GithubUserLinkText>
                 </GithubUserLink>
                 <GithubUserLinkText>
                   <FontAwesomeIcon icon={faUserEdit} pull="left" />
-                  Updated&nbsp;<Moment fromNow>{user.updated_at}</Moment>
+                  Updated&nbsp;<Moment fromNow>{userData.updated_at}</Moment>
                 </GithubUserLinkText>
               </InfoFooter>
             </InfoContainer>
@@ -150,4 +147,4 @@ const User = (props) => {
   )
 }
 
-export default withUser(User)
+export default User

@@ -1,12 +1,9 @@
 import * as React from 'react'
 
-import Layout from '../components/Layout'
-import User from '../components/User'
+import App from '../components/App'
 
 const IndexPage = () => (
-  <Layout>
-    <User />
-  </Layout>
+  <App />
 )
 
 export default IndexPage

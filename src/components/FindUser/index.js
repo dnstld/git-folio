@@ -4,8 +4,6 @@ import {
   faSearch
 } from '@fortawesome/free-solid-svg-icons'
 
-import withUser from '../WithUser'
-
 import {
   Content,
   Wrapper,
@@ -15,15 +13,15 @@ import {
   Button
 } from './styles'
 
-const FindUser = (props) => {
-  const [value, setValue] = useState(props.user)
+const FindUser = ({ user, changeUser }) => {
+  const [value, setValue] = useState(user)
 
   const handleChange = (event) => {
     setValue(event.target.value);
   }
 
   const handleUser = () => {
-    props.changeUser(value)
+    changeUser(value)
   }
 
   return (
@@ -50,4 +48,4 @@ const FindUser = (props) => {
   )
 }
 
-export default withUser(FindUser)
+export default FindUser

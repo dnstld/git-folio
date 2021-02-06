@@ -1,6 +1,6 @@
 import tw from 'twin.macro'
 
-export const App = tw.div`
+export const AppContainer = tw.div`
   text-body
 `
 export const Header = tw.header`
