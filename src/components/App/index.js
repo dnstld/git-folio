@@ -6,7 +6,7 @@ import {
 } from '@fortawesome/free-brands-svg-icons'
 
 import FindUser from '../FindUser'
-import User from '../User'
+import UserInfo from '../UserInfo'
 
 import {
   AppContainer,
@@ -46,7 +46,7 @@ const App = () => {
       <Main>
         <GlobalStyles />
 
-        <User user={user} />
+        <UserInfo user={user} />
       </Main>
     </AppContainer>
   )

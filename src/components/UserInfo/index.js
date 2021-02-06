@@ -21,7 +21,7 @@ import {
   Follow,
   FollowText,
   SocialLink,
-  UserInfo,
+  UserAndInfo,
   AvatarContainer,
   InfoContainer,
   InfoHeader,
@@ -34,12 +34,14 @@ import {
   GithubUserLinkText
 } from './styles'
 
-const User = ({ user }) => {
+const UserInfo = ({ user }) => {
   const [userData, setUserData] = useState({})
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState()
   const [errors, setErrors] = useState(null)
 
   useEffect(() => {
+    setIsLoading(true)
+
     api.getUser(user)
       .then(response => {
         setUserData(response.data)
@@ -94,7 +96,7 @@ const User = ({ user }) => {
             </Social>
           </FollowAndSocial>
 
-          <UserInfo>
+          <UserAndInfo>
             {/* <AvatarContainer hireable={userData.hireable}> */}
             <AvatarContainer>
               <img src={userData.avatar_url} alt={userData.name} />
@@ -138,7 +140,7 @@ const User = ({ user }) => {
                 </GithubUserLinkText>
               </InfoFooter>
             </InfoContainer>
-          </UserInfo>
+          </UserAndInfo>
         </Content>
       ) : (
         <p>Loading...</p>
@@ -147,4 +149,4 @@ const User = ({ user }) => {
   )
 }
 
-export default User
+export default UserInfo

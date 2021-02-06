@@ -18,14 +18,14 @@ export const FollowText = tw.p`
 export const SocialLink = tw.a`
   p-2
 `
-export const UserInfo = tw.div`
-  flex flex-col sm:flex-row items-center gap-2 p-4 border rounded mb-4
+export const UserAndInfo = tw.div`
+  flex flex-col sm:flex-row items-center sm:items-stretch gap-2 p-4 border rounded mb-4
 `
 export const AvatarContainer = tw.div`
   flex-shrink-0 h-20 md:h-32 w-20 md:w-32 rounded-full overflow-hidden flex items-center justify-center border-2 md:border-4 border-gray-300
 `
 export const InfoContainer = tw.div`
-  flex flex-col w-full px-4
+  flex flex-col justify-between w-full px-4
 `
 export const InfoHeader = tw.header`
   flex flex-col items-center sm:items-baseline
