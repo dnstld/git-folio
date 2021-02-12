@@ -35,6 +35,7 @@ import {
 const UserInfo = ({ user }) => {
   const [userData, setUserData] = useState({})
   const [isLoading, setIsLoading] = useState()
+  // eslint-disable-next-line no-unused-vars
   const [errors, setErrors] = useState(null)
 
   useEffect(() => {

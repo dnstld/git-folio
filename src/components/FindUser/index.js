@@ -1,8 +1,7 @@
+/* eslint-disable jsx-a11y/tabindex-no-positive */
 import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {
-  faSearch
-} from '@fortawesome/free-solid-svg-icons'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
 
 import {
   Content,
@@ -10,14 +9,14 @@ import {
   Label,
   InputContainer,
   Input,
-  Button
+  Button,
 } from './styles'
 
 const FindUser = ({ user, changeUser }) => {
   const [value, setValue] = useState(user)
 
   const handleChange = (event) => {
-    setValue(event.target.value);
+    setValue(event.target.value)
   }
 
   const handleUser = () => {
@@ -27,9 +26,7 @@ const FindUser = ({ user, changeUser }) => {
   return (
     <Content>
       <Wrapper>
-        <Label htmlFor="find-user">
-          GitHub username
-        </Label>
+        <Label htmlFor="find-user">GitHub username</Label>
         <InputContainer>
           <Input
             onChange={handleChange}
