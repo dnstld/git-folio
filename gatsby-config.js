@@ -1,9 +1,8 @@
 module.exports = {
   siteMetadata: {
     title: 'GitFolio',
-    titleTemplate: '%s · The Real Hero',
-    description:
-      'Hogwarts Potions master, Head of Slytherin house and former Death Eater.',
+    titleTemplate: '%s · The GitHub Portfolio',
+    description: 'Your GitHub as your portfolio.',
   },
   plugins: [
     'gatsby-plugin-fontawesome-css',
