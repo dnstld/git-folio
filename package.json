@@ -26,6 +26,7 @@
     ".{js}": [
       "pretty-quick --staged",
       "npm run lint:fix",
+      "npm run test",
       "git add ."
     ]
   },
