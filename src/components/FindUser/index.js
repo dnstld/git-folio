@@ -19,8 +19,10 @@ const FindUser = ({ user, changeUser }) => {
     setValue(event.target.value)
   }
 
-  const handleUser = () => {
-    changeUser(value)
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      changeUser(value)
+    }
   }
 
   return (
@@ -30,12 +32,13 @@ const FindUser = ({ user, changeUser }) => {
         <InputContainer>
           <Input
             onChange={handleChange}
+            onKeyDown={handleKeyDown}
             value={value}
             type="text"
             id="find-user"
             tabIndex="1"
           />
-          <Button type="button" tabIndex="2" onClick={handleUser}>
+          <Button type="button" tabIndex="2" onClick={() => changeUser(value)}>
             <FontAwesomeIcon icon={faSearch} pull="left" />
             Find
           </Button>
