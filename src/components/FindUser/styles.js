@@ -13,8 +13,8 @@ export const InputContainer = tw.div`
   flex
 `
 export const Input = tw.input`
-  appearance-none rounded-l p-2 lg:p-4 border-t mr-0 border-b border-l text-primary lg:text-xl border-gray-200 bg-white w-full focus:outline-none
+  appearance-none rounded-l p-2 lg:p-4 border-t mr-0 border-b border-l text-primary lg:text-xl border-gray-200 bg-white w-full focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent
 `
 export const Button = tw.button`
-  flex items-center tracking-widest px-8 lg:px-16 rounded-r bg-green-500 text-white lg:text-xl font-bold p-2 lg:p-4 uppercase border-green-500 border-t border-b border-r
+  flex items-center tracking-widest px-8 lg:px-16 rounded-r bg-green-500 text-white lg:text-xl font-bold p-2 lg:p-4 uppercase border-green-500 border-t border-b border-r disabled:opacity-50 disabled:cursor-not-allowed
 `

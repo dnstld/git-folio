@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/tabindex-no-positive */
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 
@@ -14,6 +14,9 @@ import {
 
 const FindUser = ({ user, changeUser }) => {
   const [value, setValue] = useState(user)
+  const isButtonDisabled = value.length === 0
+
+  const searchInput = useRef(null)
 
   const handleChange = (event) => {
     setValue(event.target.value)
@@ -25,20 +28,30 @@ const FindUser = ({ user, changeUser }) => {
     }
   }
 
+  const handleOnFocus = (event) => {
+    setValue('')
+  }
+
   return (
     <Content>
       <Wrapper>
         <Label htmlFor="find-user">GitHub username</Label>
         <InputContainer>
           <Input
+            ref={searchInput}
             onChange={handleChange}
             onKeyDown={handleKeyDown}
+            onFocus={handleOnFocus}
             value={value}
             type="text"
             id="find-user"
-            tabIndex="1"
+            placeholder="Type the username"
           />
-          <Button type="button" tabIndex="2" onClick={() => changeUser(value)}>
+          <Button
+            type="button"
+            onClick={() => changeUser(value)}
+            disabled={isButtonDisabled}
+          >
             <FontAwesomeIcon icon={faSearch} pull="left" />
             Find
           </Button>
