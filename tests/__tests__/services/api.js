@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import axios from 'axios'
 
-import { getUser } from '../../../src/services/api'
+import { getUser, API } from '../../../src/services/api'
 
 jest.mock('axios')
 
@@ -12,6 +12,8 @@ describe('API service', () => {
     axios.get.mockImplementationOnce(() => Promise.resolve(data))
 
     await expect(getUser('gitfolio')).resolves.toEqual(data)
+
+    expect(axios.get).toHaveBeenCalledWith(`${API}/users/gitfolio`)
   })
 
   it('fetches erroneously data from an API', async () => {
