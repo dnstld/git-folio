@@ -23,7 +23,6 @@ const SEO = ({ title, description }) => {
   return (
     <Helmet
       title={pageTitle}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
       meta={[
         {
           name: 'description',
