@@ -2,9 +2,9 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import { useStaticQuery } from 'gatsby'
-
 import Helmet from 'react-helmet'
-import Seo from '../Seo'
+
+import Seo from '../../../src/components/Seo'
 
 describe('SEO component', () => {
   beforeAll(() => {

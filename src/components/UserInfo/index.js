@@ -11,7 +11,8 @@ import {
   faUserEdit,
 } from '@fortawesome/free-solid-svg-icons'
 
-import api from '../../services/api'
+import { getUser } from '../../services/api'
+
 import {
   Content,
   FollowAndSocial,
@@ -41,8 +42,7 @@ const UserInfo = ({ user }) => {
   useEffect(() => {
     setIsLoading(true)
 
-    api
-      .getUser(user)
+    getUser(user)
       .then((response) => {
         setUserData(response.data)
         setIsLoading(false)
