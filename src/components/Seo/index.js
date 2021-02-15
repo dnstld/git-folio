@@ -3,32 +3,34 @@ import PropTypes from 'prop-types'
 import { Helmet } from 'react-helmet'
 import { useStaticQuery, graphql } from 'gatsby'
 
-const query = graphql`
-  query SEO {
-    site {
-      siteMetadata {
-        defaultTitle: title
-        titleTemplate
-        defaultDescription: description
-      }
-    }
-  }
-`
-
 const SEO = ({ title, description }) => {
-  const { site } = useStaticQuery(query)
+  const { site } = useStaticQuery(
+    graphql`
+      query {
+        site {
+          siteMetadata {
+            title
+            description
+          }
+        }
+      }
+    `
+  )
 
-  const { defaultTitle, titleTemplate, defaultDescription } = site.siteMetadata
-
-  const seo = {
-    title: title || defaultTitle,
-    description: description || defaultDescription,
-  }
+  const pageTitle = title || site.siteMetadata.title
+  const metaDescription = description || site.siteMetadata.description
 
   return (
-    <Helmet title={seo.title} titleTemplate={titleTemplate}>
-      <meta name="description" content={seo.description} />
-    </Helmet>
+    <Helmet
+      title={pageTitle}
+      titleTemplate={`%s | ${site.siteMetadata.title}`}
+      meta={[
+        {
+          name: 'description',
+          content: metaDescription,
+        },
+      ]}
+    />
   )
 }
 
@@ -37,9 +39,12 @@ export default SEO
 SEO.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
+  // eslint-disable-next-line react/no-unused-prop-types
+  meta: PropTypes.arrayOf(PropTypes.object),
 }
 
 SEO.defaultProps = {
-  title: null,
-  description: null,
+  title: '',
+  description: '',
+  meta: [],
 }
