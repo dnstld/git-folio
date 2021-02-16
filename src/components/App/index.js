@@ -32,7 +32,7 @@ const App = () => {
             <Logo>GitFolio</Logo>
             <Version>v1.0.0</Version>
           </LogoContainer>
-          <a href="https://github.com/dnstld/git-portfolio" target="blank">
+          <a href="https://github.com/dnstld/git-folio" target="blank">
             <FontAwesomeIcon icon={faGithub} size="lg" />
           </a>
         </LogoSection>
