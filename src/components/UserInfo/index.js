@@ -39,10 +39,10 @@ const UserInfo = ({ user }) => {
   // eslint-disable-next-line no-unused-vars
   const [errors, setErrors] = useState(null)
 
-  useEffect(() => {
+  const fetchUserData = async (username) => {
     setIsLoading(true)
 
-    getUser(user)
+    return getUser(username)
       .then((response) => {
         setUserData(response.data)
         setIsLoading(false)
@@ -51,27 +51,31 @@ const UserInfo = ({ user }) => {
         setErrors(error)
         setIsLoading(false)
       })
+  }
+
+  useEffect(() => {
+    fetchUserData(user)
   }, [user])
 
   return (
     <div>
       {!isLoading ? (
-        <Content>
+        <Content data-testid="content">
           <FollowAndSocial>
             <Follow>
-              <div>
+              <div data-testid="public-repos">
                 <p>Repos</p>
                 <FollowText>{userData.public_repos}</FollowText>
               </div>
-              <div>
+              <div data-testid="public-gists">
                 <p>Gists</p>
                 <FollowText>{userData.public_gists}</FollowText>
               </div>
-              <div>
+              <div data-testid="followers">
                 <p>Followers</p>
                 <FollowText>{userData.followers}</FollowText>
               </div>
-              <div>
+              <div data-testid="following">
                 <p>Following</p>
                 <FollowText>{userData.following}</FollowText>
               </div>
@@ -83,6 +87,7 @@ const UserInfo = ({ user }) => {
                   href={`https://twitter.com/${userData.twitter_username}`}
                   target="blank"
                   title={userData.twitter_username}
+                  data-testid="twitter-username"
                 >
                   <FontAwesomeIcon icon={faTwitter} size="lg" />
                 </SocialLink>
@@ -92,6 +97,7 @@ const UserInfo = ({ user }) => {
                   href={userData.blog}
                   target="blank"
                   title={userData.name}
+                  data-testid="blog"
                 >
                   <FontAwesomeIcon icon={faDesktop} size="lg" />
                 </SocialLink>
@@ -101,6 +107,7 @@ const UserInfo = ({ user }) => {
                   href={`mailto:${userData.email}`}
                   target="blank"
                   title={userData.email}
+                  data-testid="email"
                 >
                   <FontAwesomeIcon icon={faEnvelope} size="lg" />
                 </SocialLink>
@@ -110,28 +117,34 @@ const UserInfo = ({ user }) => {
 
           <UserAndInfo>
             <AvatarContainer>
-              <img src={userData.avatar_url} alt={userData.name} />
+              <img
+                src={userData.avatar_url}
+                alt={userData.name}
+                data-testid="avatar-url"
+              />
             </AvatarContainer>
 
             <InfoContainer>
               <InfoHeader>
                 <UserName>
                   {userData.site_admin && (
-                    <UserShield>
+                    <UserShield data-testid="site-admin">
                       <FontAwesomeIcon icon={faUserShield} pull="left" />
                     </UserShield>
                   )}
-                  {userData.name}
+                  <span data-testid="name">{userData.name}</span>
                 </UserName>
 
                 {userData.location && (
                   <UserLocation>
                     <FontAwesomeIcon icon={faMapMarkerAlt} pull="left" />
-                    {userData.location}
+                    <span data-testid="location">{userData.location}</span>
                   </UserLocation>
                 )}
 
-                {userData.bio && <UserBio>{userData.bio}</UserBio>}
+                {userData.bio && (
+                  <UserBio data-testid="bio">{userData.bio}</UserBio>
+                )}
               </InfoHeader>
 
               <InfoFooter>
@@ -142,19 +155,24 @@ const UserInfo = ({ user }) => {
                 >
                   <GithubUserLinkText>
                     <FontAwesomeIcon icon={faGithub} pull="left" />
-                    Created&nbsp;<Moment fromNow>{userData.created_at}</Moment>
+                    <span data-testid="created-at">
+                      Created&nbsp;
+                      <Moment fromNow>{userData.created_at}</Moment>
+                    </span>
                   </GithubUserLinkText>
                 </GithubUserLink>
                 <GithubUserLinkText>
                   <FontAwesomeIcon icon={faUserEdit} pull="left" />
-                  Updated&nbsp;<Moment fromNow>{userData.updated_at}</Moment>
+                  <span data-testid="updated-at">
+                    Updated&nbsp;<Moment fromNow>{userData.updated_at}</Moment>
+                  </span>
                 </GithubUserLinkText>
               </InfoFooter>
             </InfoContainer>
           </UserAndInfo>
         </Content>
       ) : (
-        <Content>
+        <Content data-testid="loading">
           <FollowAndSocial>
             <Follow>
               <div>
