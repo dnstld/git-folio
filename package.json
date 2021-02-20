@@ -11,7 +11,7 @@
     "develop": "gatsby develop",
     "start": "gatsby develop",
     "build": "gatsby build",
-    "deploy": "npm run build && gpo master",
+    "deploy": "npm run build && gpo main",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "lint": "npx eslint src",
